@@ -1,27 +1,24 @@
 let Snoostorm = require('snoostorm');
 let Snoowrap = require('snoowrap');
-let PropertiesReader = require('properties-reader');
 let axios = require('axios');
 
-var properties = new PropertiesReader('./env.properties');
-
 const r = new Snoowrap({
-    userAgent: properties.get('userAgent'),
-    clientId: properties.get('clientId'),
-    clientSecret: properties.get('clientSecret'),
-    username: properties.get('username'),
-    password: properties.get('password')
+    userAgent: process.env.userAgent,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+    username: process.env.username,
+    password: process.env.password
 });
 
 const comments = new Snoostorm.CommentStream(r, {
-    subreddit: properties.get('targetSubreddit'),
+    subreddit: process.env.targetSubreddit,
     limit: 10,
     pollTime: 2000
 });
 
 comments.on("item", (comment) => {
     var commentWords = comment.body.split(' ');
-    var summonWord = properties.get('summonWord');
+    var summonWord = process.env.summonWord;
     var summonIdx = commentWords.indexOf(summonWord);
     // !tickerpriceplease AAPL
     // hi bot please tell me !tickerpriceplease AAPL
