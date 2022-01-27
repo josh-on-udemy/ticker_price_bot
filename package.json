@@ -1,0 +1,17 @@
+{
+  "name": "ticker_price_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Josh Bishop",
+  "license": "ISC",
+  "dependencies": {
+    "properties-reader":"2.2.0",
+    "snoostorm":"1.5.2",
+    "axios":"0.25.0"
+  }
+}
